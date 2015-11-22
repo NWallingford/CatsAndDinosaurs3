@@ -25,24 +25,25 @@ public class ChefModel extends AbstractModel implements IChefModel {
     {
         this.source = source;
     }
-    @Override
+    
     public boolean save() {
         boolean savedGood = true;
-        savedGood = orders.stream().map((order) -> order.save()).reduce(savedGood, (accumulator, _item) -> accumulator & _item);
+        for(IOrderModel order : orders)
+        {
+        	savedGood &= order.save();
+        }
+//        savedGood = orders.stream().map((order) -> order.save()).reduce(savedGood, (accumulator, _item) -> accumulator & _item);
         return savedGood;
     }
     
-    @Override
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void load(HashMap<String, Object> fields) throws LoadException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public ArrayList<String> getOrders() {
         //Not completed orders are marked as 1
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
