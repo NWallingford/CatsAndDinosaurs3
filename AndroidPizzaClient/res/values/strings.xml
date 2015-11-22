@@ -4,5 +4,13 @@
     <string name="app_name">AndroidPizzaClient</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_chef_view">Chef View</string>
+    <string name="title_activity_main_view">Welcome to Pizza Place!</string>
+    <string name="title_activity_login_view">Login</string>
+    <string name="title_activity_create_account_view">Create Account</string>
+    <string name="title_activity_update_menu_view">Update Menu</string>
+    <string name="title_activity_make_order_view">Create Your Order</string>
+    <string name="title_activity_checkout_view">Checkout</string>
+    <string name="title_activity_menu_view">Menu</string>
 
 </resources>
