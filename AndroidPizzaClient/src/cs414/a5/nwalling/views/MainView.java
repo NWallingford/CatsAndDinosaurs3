@@ -1,9 +1,10 @@
-package cs414.a5.nwalling;
+package cs414.a5.nwalling.views;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import cs414.a5.nwalling.R;
 
 public class MainView extends Activity {
 
