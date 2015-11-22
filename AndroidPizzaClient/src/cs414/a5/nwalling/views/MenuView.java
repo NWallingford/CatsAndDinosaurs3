@@ -1,9 +1,11 @@
 package cs414.a5.nwalling.views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import cs414.a5.nwalling.R;
 
 public class MenuView extends Activity {
@@ -31,5 +33,10 @@ public class MenuView extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void backButtonPressed(View view){
+		Intent i = new Intent(MenuView.this, MainView.class);
+		startActivity(i);
 	}
 }

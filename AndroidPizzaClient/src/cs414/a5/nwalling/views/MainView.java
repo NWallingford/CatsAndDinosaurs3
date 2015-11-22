@@ -1,9 +1,11 @@
 package cs414.a5.nwalling.views;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import cs414.a5.nwalling.R;
 
 public class MainView extends Activity {
@@ -31,5 +33,35 @@ public class MainView extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void chefViewButtonPressed(View view){
+		Intent i = new Intent(MainView.this, ChefView.class);
+		startActivity(i);
+	}
+	
+	public void makeOrderButtonPressed(View view){
+		Intent i = new Intent(MainView.this, MakeOrderView.class);
+		startActivity(i);
+	}
+	
+	public void loginButtonPressed(View view){
+		Intent i = new Intent(MainView.this, LoginView.class);
+		startActivity(i);
+	}
+	
+	public void createAccountButtonPressed(View view){
+		Intent i = new Intent(MainView.this, CreateAccountView.class);
+		startActivity(i);
+	}
+	
+	public void updateMenuButtonPressed(View view){
+		Intent i = new Intent(MainView.this, UpdateMenuView.class);
+		startActivity(i);
+	}
+	
+	public void viewMenuButtonPressed(View view){
+		Intent i = new Intent(MainView.this, MenuView.class);
+		startActivity(i);
 	}
 }

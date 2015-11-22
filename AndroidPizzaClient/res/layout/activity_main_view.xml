@@ -8,9 +8,59 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cs414.a5.nwalling.views.MainView" >
 
-    <TextView
+    <Button
+        android:id="@+id/chefViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:onClick="chefViewButtonPressed"
+        android:text="Chef View" />
+
+    <Button
+        android:id="@+id/makeOrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chefViewButton"
+        android:layout_centerHorizontal="true"
+        android:onClick="makeOrderButtonPressed"
+        android:text="Make Order" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/makeOrderButton"
+        android:layout_centerHorizontal="true"
+        android:text="Login" 
+        android:onClick="loginButtonPressed"/>
+
+    <Button
+        android:id="@+id/createAccountButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:text="Create Account" 
+        android:onClick="createAccountButtonPressed"/>
+
+    <Button
+        android:id="@+id/updateMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createAccountButton"
+        android:layout_centerHorizontal="true"
+        android:text="Update Menu" 
+        android:onClick="updateMenuButtonPressed"/>
+
+    <Button
+        android:id="@+id/viewMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/makeOrderButton"
+        android:layout_below="@+id/updateMenuButton"
+        android:text="View Menu" 
+        android:onClick="viewMenuButtonPressed"/>
 
 </RelativeLayout>
