@@ -7,7 +7,41 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cs414.a5.nwalling.views.UpdateMenuView" >
+	
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp" >
 
+    </ListView>
+    
+    <Button
+        android:id="@+id/editSelectedItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listview"
+        android:layout_centerInParent="true"
+        android:text="Edit Selected Item" 
+        android:onClick="editSelectedItemButtonPressed"/>
+    
+    <Button
+        android:id="@+id/removeSelectedItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editSelectedItemButton"
+        android:layout_centerInParent="true"
+        android:text="Remove Selected Item" 
+        android:onClick="removeSelectedItemButtonPressed"/>
+    
+    <Button
+        android:id="@+id/addNewMenuItemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/removeSelectedItemButton"
+        android:layout_centerInParent="true"
+        android:text="Add New Menu Item" 
+        android:onClick="addNewMenuItemButtonPressed"/>
+    
     <Button
         android:id="@+id/updateMenuBackButton"
         android:layout_width="wrap_content"
@@ -17,4 +51,13 @@
         android:text="Back" 
         android:onClick="backButtonPressed"/>
 
+    <Button
+        android:id="@+id/updateMenuSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Save" 
+        android:onClick="saveButtonPressed"/>
+    
 </RelativeLayout>
