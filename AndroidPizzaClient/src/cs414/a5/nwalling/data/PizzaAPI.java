@@ -23,6 +23,10 @@ public interface PizzaAPI {
 	Call<ArrayList<OrderModel>> getOrders(@Path("id") int id);
 	@GET("Get/Orders")
 	Call<ArrayList<OrderModel>> getOrders();
+	@GET("Get/OrderItems")
+	Call<ArrayList<ItemModel>> getOrderItems();
+	@GET("Get/OrderItems/{id}")
+	Call<ArrayList<ItemModel>> getOrderItems(@Path("id") int id);
 	@GET("Get/User/{id}")
 	Call<UserModel> getUser(@Path("id") int id);
 	@GET("Get/User/{username}/{password}")

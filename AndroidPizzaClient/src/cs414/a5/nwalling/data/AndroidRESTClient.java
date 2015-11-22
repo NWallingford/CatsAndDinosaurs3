@@ -70,6 +70,43 @@ public class AndroidRESTClient implements IDataSource{
 		return m;
 	}
 
+	public ArrayList<IItemModel> getOrderItems(int id) throws StorageException
+	{
+		Call<ArrayList<ItemModel>> call = api.getOrderItems(id);
+		Response<ArrayList<ItemModel>> response = null;
+		try {
+			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+			response = call.execute();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
+		for(IItemModel o : response.body())
+		{
+			tmp.add(o);
+		}
+		return tmp;
+	}
+	
+	public ArrayList<IItemModel> getOrderItems() throws StorageException
+	{
+		Call<ArrayList<ItemModel>> call = api.getOrderItems();
+		Response<ArrayList<ItemModel>> response = null;
+		try {
+			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+			response = call.execute();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
+		for(IItemModel o : response.body())
+		{
+			tmp.add(o);
+		}
+		return tmp;
+	}
 	@Override
 	public IOrderModel getOrder(int id) throws StorageException {
 		Call<OrderModel> call = api.getOrder(id);
@@ -81,6 +118,7 @@ public class AndroidRESTClient implements IDataSource{
 			e.printStackTrace();
 			return null;
 		}
+		response.body().setItems(getOrderItems(id));
 		return response.body();
 	}
 
@@ -96,8 +134,14 @@ public class AndroidRESTClient implements IDataSource{
 			return null;
 		}
 		ArrayList<IOrderModel> tmp = new ArrayList<IOrderModel>();
+		//I originally wanted to do this using a sql join but i've run into trouble getting the order object
+		//to properly serialize with items in it. So instead we'll get the shell of all orders here and fetch the items
+		//we need when we need them by calling getOrderItems
+		//No order should have a number of items significant enough to cause any real problems.
+		ArrayList<IItemModel> allItems = getOrderItems();
 		for(IOrderModel o : response.body())
 		{
+
 			tmp.add(o);
 		}
 		return tmp;
