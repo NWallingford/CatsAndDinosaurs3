@@ -11,12 +11,14 @@ import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.google.gson.TypeAdapter;
+
 /**
  *
  * @author Jacob
  */
 public abstract class AbstractModel implements IModel, Serializable{
-    protected transient IDataSource source;
+//    protected transient IDataSource source;
     
     protected transient PropertyChangeSupport propertySupport;
     
@@ -27,12 +29,12 @@ public abstract class AbstractModel implements IModel, Serializable{
     public AbstractModel(IDataSource source)
     {
         this();
-        this.source = source;
+//        this.source = source;
     }
     
     public void init(IDataSource source)
     {
-        this.source = source;
+//        this.source = source;
     }
     
     public void addPropertyChangeListener(PropertyChangeListener listener) {

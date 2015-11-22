@@ -45,13 +45,10 @@ public class OrderModel extends AbstractModel implements IOrderModel{
     
     private ArrayList<IItemModel> items;
     
-    public OrderModel()
-    {
-        //Do not use this is a hack
-    }
-    public OrderModel(IDataSource source) {
+
+    public OrderModel() {
         super();
-        this.source = source;
+//        this.source = source;
         items = new ArrayList();
     }
     
@@ -136,17 +133,17 @@ public class OrderModel extends AbstractModel implements IOrderModel{
     }
     //</editor-fold>
     
-    @Override
-    public boolean save() 
-    {
-        
-        try {
-            source.saveOrder(this);
-        } catch (StorageException ex) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean save() 
+//    {
+//        
+//        try {
+//            source.saveOrder(this);
+//        } catch (StorageException ex) {
+//            return false;
+//        }
+//        return true;
+//    }
 
 
     @Override

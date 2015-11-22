@@ -9,10 +9,14 @@ import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.enums.ItemType;
 import cs414.a5.nwalling.exceptions.LoadException;
 import java.beans.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 /**
  *
@@ -132,18 +136,18 @@ public class ItemModel extends AbstractModel implements IItemModel {
         isActive = value;
     }
     //</editor-fold>
-    @Override
-    public boolean save() {
-        try
-        {
-            source.saveItem(this);
-        }
-        catch(Exception e)
-        {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean save() {
+//        try
+//        {
+//            source.saveItem(this);
+//        }
+//        catch(Exception e)
+//        {
+//            return false;
+//        }
+//        return true;
+//    }
 
     @Override
     public void load(HashMap<String, Object> fields) throws LoadException {
@@ -174,6 +178,6 @@ public class ItemModel extends AbstractModel implements IItemModel {
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
+    
+    
 }

@@ -8,6 +8,8 @@ package cs414.a5.nwalling.controllers;
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.IModelFactory;
 import cs414.a5.nwalling.enums.OrderStatus;
+import cs414.a5.nwalling.exceptions.StorageException;
+
 import java.util.ArrayList;
 import cs414.a5.nwalling.models.IMenuModel;
 import cs414.a5.nwalling.models.IOrderModel;
@@ -57,7 +59,16 @@ public class OrderController extends AbstractController implements IOrderControl
 
     @Override
     public boolean saveOrder() {
-        return order.save();
+    	
+    	try {
+			source.saveOrder(order);
+		} catch (StorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+    	return true;
+//        return order.save();
     }
 
     @Override

@@ -40,7 +40,16 @@ public class CreateAccountController extends AbstractController implements ICrea
     @Override
     public boolean createUser() {
         //Do validation on fields here
-        return model.save();
+//        return model.save();
+    	
+    	try {
+			source.saveUser(model);
+		} catch (StorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+    	return true;
     }
     
     @Override

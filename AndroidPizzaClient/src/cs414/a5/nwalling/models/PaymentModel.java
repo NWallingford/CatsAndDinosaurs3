@@ -48,10 +48,10 @@ public class PaymentModel extends AbstractModel implements IPaymentModel {
     {
         //Do not use this is a hack
     }
-    public PaymentModel(IModelFactory f,IDataSource source) 
+    public PaymentModel(IModelFactory f) 
     {
         super();
-        this.source = source;
+//        this.source = source;
         order = f.getEmptyIOrderModel();
     }
 
@@ -207,17 +207,17 @@ public class PaymentModel extends AbstractModel implements IPaymentModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    @Override
-    public boolean save() {
-        try {
-            this.setTotal(order.getTotal());
-            source.saveOrder(order);
-            source.savePayment(this);
-        } catch (StorageException ex) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean save() {
+//        try {
+//            this.setTotal(order.getTotal());
+//            source.saveOrder(order);
+//            source.savePayment(this);
+//        } catch (StorageException ex) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     @Override
     public void load(HashMap<String, Object> fields) throws LoadException {

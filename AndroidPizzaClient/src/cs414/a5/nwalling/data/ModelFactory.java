@@ -21,32 +21,32 @@ public class ModelFactory implements IModelFactory {
     
     @Override
     public IUserModel getEmptyIUserModel() {
-         return new UserModel(source);
+         return new UserModel();
     }
 
     @Override
     public IMenuModel getEmptyIMenuModel() {
-        return new MenuModel(this, source);
+        return new MenuModel(this);
     }
 
     @Override
     public IChefModel getEmptyIChefModel() {
-        return new ChefModel(source);
+        return new ChefModel();
     }
 
     @Override
     public IItemModel getEmptyIItemModel() {
-        return new ItemModel(source);
+        return new ItemModel();
     }
 
     @Override
     public IOrderModel getEmptyIOrderModel() {
-        return new OrderModel(source);
+        return new OrderModel();
     }
 
     @Override
     public IPaymentModel getEmptyIPaymentModel() {
-        return new PaymentModel(this, source);
+        return new PaymentModel(this);
     }
     
 }

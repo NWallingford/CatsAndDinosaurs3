@@ -17,24 +17,20 @@ import java.util.HashMap;
 public class ChefModel extends AbstractModel implements IChefModel {
 
     ArrayList<IOrderModel> orders = new ArrayList();
+
     public ChefModel()
     {
-        //Do not use this is a hack
-    }
-    public ChefModel(IDataSource source)
-    {
-        this.source = source;
     }
     
-    public boolean save() {
-        boolean savedGood = true;
-        for(IOrderModel order : orders)
-        {
-        	savedGood &= order.save();
-        }
-//        savedGood = orders.stream().map((order) -> order.save()).reduce(savedGood, (accumulator, _item) -> accumulator & _item);
-        return savedGood;
-    }
+//    public boolean save() {
+//        boolean savedGood = true;
+//        for(IOrderModel order : orders)
+//        {
+//        	savedGood &= order.save();
+//        }
+////        savedGood = orders.stream().map((order) -> order.save()).reduce(savedGood, (accumulator, _item) -> accumulator & _item);
+//        return savedGood;
+//    }
     
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

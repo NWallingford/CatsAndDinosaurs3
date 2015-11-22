@@ -7,6 +7,7 @@ package cs414.a5.nwalling.controllers;
 
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.IModelFactory;
+import cs414.a5.nwalling.exceptions.StorageException;
 import cs414.a5.nwalling.models.IMenuModel;
 
 /**
@@ -45,7 +46,11 @@ public class ChangeMenuController extends AbstractController implements IChangeM
     
     @Override
     public void save() {
-       model.save();
+    	try {
+			source.saveMenu(model);
+		} catch (StorageException e) {
+			//Failed! Do work here
+		}
     }
 
     @Override

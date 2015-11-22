@@ -45,12 +45,8 @@ public class UserModel extends AbstractModel implements IUserModel {
     private int authLevel;
     private String emailAddress;
     
-    public UserModel()
-    {
-        //Don't use this.It's a hack to allow the existing query system to work.
-    }
-    public UserModel(IDataSource source) {
-        this.source = source;
+    public UserModel() {
+//        this.source = source;
         propertySupport = new PropertyChangeSupport(this);
     }
     
@@ -164,19 +160,19 @@ public class UserModel extends AbstractModel implements IUserModel {
         emailAddress = value;
     }
     
-    @Override
-    public boolean save() {
-        try
-        {
-            source.saveUser(this);
-            return true;
-        }
-        catch(Exception e)
-        {
-            //TODO: Do something here
-        }
-        return false;
-    }
+//    @Override
+//    public boolean save() {
+//        try
+//        {
+//            source.saveUser(this);
+//            return true;
+//        }
+//        catch(Exception e)
+//        {
+//            //TODO: Do something here
+//        }
+//        return false;
+//    }
 
 //    @Override
 //    public void getById(int id) {

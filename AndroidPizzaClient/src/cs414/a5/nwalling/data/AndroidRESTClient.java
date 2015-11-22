@@ -18,7 +18,7 @@ public class AndroidRESTClient implements IDataSource{
 	// It can be updated to do it correctly but would take more time than we have at the moment
 	//and i would leave it for a future iteration.
 	@Override
-	public void load() throws LoadException {
+	public void load() {
 		Retrofit retrofit = new Retrofit.Builder()
     			.baseUrl("http://localhost:8080/PizzaWebService/webresources/PizzaService/")
     			.addConverterFactory(GsonConverterFactory.create())
@@ -63,16 +63,11 @@ public class AndroidRESTClient implements IDataSource{
 
 	@Override
 	public IMenuModel getMenu() throws StorageException {
-		Call<MenuModel> call = api.getMenu();
-		Response<MenuModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return response.body();
+		ArrayList<IItemModel> items = getItems();
+		
+		MenuModel m = new MenuModel();
+		m.setItems(items);
+		return m;
 	}
 
 	@Override

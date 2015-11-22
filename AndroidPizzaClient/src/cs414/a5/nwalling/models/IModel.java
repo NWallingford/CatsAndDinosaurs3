@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author Jacob
  */
 public interface IModel {
-    public boolean save();
+//    public boolean save();
     public void clear();
     public void init(IDataSource source);
     /*

@@ -8,6 +8,7 @@ package cs414.a5.nwalling.controllers;
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.IModelFactory;
 import cs414.a5.nwalling.enums.PaymentType;
+import cs414.a5.nwalling.exceptions.StorageException;
 import cs414.a5.nwalling.models.IModel;
 import cs414.a5.nwalling.models.IOrderModel;
 import cs414.a5.nwalling.models.IPaymentModel;
@@ -31,7 +32,17 @@ public class PaymentController extends AbstractController implements IPaymentCon
     
     @Override
     public boolean submit() {
-        return model.save();
+    	try
+    	{
+    	source.savePayment(model);
+    	}
+    	catch(StorageException e)
+    	{
+    		e.printStackTrace();
+    		return false;
+    	}
+    	return true;
+//        return model.save();
     }
     
     //You should do validation in this method. If it's good set it in the model

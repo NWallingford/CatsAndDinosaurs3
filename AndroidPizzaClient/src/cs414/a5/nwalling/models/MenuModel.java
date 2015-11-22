@@ -22,10 +22,10 @@ public class MenuModel extends AbstractModel implements IMenuModel {
     {
         //Do not use this is a hack
     }
-    public MenuModel(IModelFactory modelFactory, IDataSource source) {
+    public MenuModel(IModelFactory modelFactory) {
         super();
         items = new ArrayList();
-        this.source = source;
+//        this.source = source;
     }
     
     public void newItem(String name, double price)
@@ -54,17 +54,17 @@ public class MenuModel extends AbstractModel implements IMenuModel {
     {
     }
     
-    @Override
-    public boolean save() 
-    {
-        boolean savedGood = true;
-        for(IItemModel item : items)
-        {
-            savedGood &= item.save();
-        }
-        
-        return savedGood;
-    }
+//    @Override
+//    public boolean save() 
+//    {
+//        boolean savedGood = true;
+//        for(IItemModel item : items)
+//        {
+//            savedGood &= item.save();
+//        }
+//        
+//        return savedGood;
+//    }
 
     @Override
     public void load(HashMap<String, Object> fields) {
