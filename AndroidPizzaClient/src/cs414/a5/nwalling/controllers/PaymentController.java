@@ -13,6 +13,9 @@ import cs414.a5.nwalling.models.IModel;
 import cs414.a5.nwalling.models.IOrderModel;
 import cs414.a5.nwalling.models.IPaymentModel;
 import cs414.a5.nwalling.models.PaymentModel;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  *
@@ -34,7 +37,22 @@ public class PaymentController extends AbstractController implements IPaymentCon
     public boolean submit() {
     	try
     	{
-    	source.savePayment(model);
+    		source.savePayment(model, new Callback<PaymentModel>() 
+    				{
+
+						@Override
+						public void onFailure(Throwable arg0) {
+							// TODO Auto-generated method stub
+							//vomit to screen
+						}
+
+						@Override
+						public void onResponse(Response<PaymentModel> arg0, Retrofit arg1) {
+							// TODO Auto-generated method stub
+							//Do nothing it was successfull
+						}
+    					
+    				});
     	}
     	catch(StorageException e)
     	{

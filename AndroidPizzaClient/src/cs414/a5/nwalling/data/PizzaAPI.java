@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cs414.a5.nwalling.exceptions.StorageException;
 import cs414.a5.nwalling.models.*;
 import retrofit.Call;
+import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
@@ -36,15 +37,15 @@ public interface PizzaAPI {
 	@GET("Get/User/{username}")
 	Call<UserModel> getUser(@Path("username") String username);
 	@POST("Save/User")
-	Call<UserModel> saveUser(IUserModel model);
+	Call<UserModel> saveUser(@Body IUserModel model);
 	@POST("Save/Item")
-	Call<ItemModel> saveItem(IItemModel model);
+	Call<ItemModel> saveItem(@Body IItemModel model);
 	@POST("Save/Menu")
-	Call<MenuModel> saveMenu(IMenuModel model);
+	Call<MenuModel> saveMenu(@Body IMenuModel model);
 	@POST("Save/Order")
-	Call<OrderModel> saveOrder(IOrderModel model);
+	Call<OrderModel> saveOrder(@Body IOrderModel model);
 	@POST("Save/Payment")
-	Call<PaymentModel> savePayment(IPaymentModel model);
+	Call<PaymentModel> savePayment(@Body IPaymentModel model);
 	
 
 }

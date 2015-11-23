@@ -21,7 +21,7 @@ public class AndroidRESTClient implements IDataSource{
 	@Override
 	public void load() {
 		Retrofit retrofit = new Retrofit.Builder()
-    			.baseUrl("http://10.84.44.76:8080/PizzaWebService/webresources/PizzaService/")
+    			.baseUrl("http://10.0.2.2:8080/PizzaWebService/webresources/PizzaService/")
     			.addConverterFactory(GsonConverterFactory.create())
     			.build();
     	
@@ -55,241 +55,106 @@ public class AndroidRESTClient implements IDataSource{
 //		return m;
 	}
 
-	public ArrayList<IItemModel> getOrderItems(int id) throws StorageException
+	public void getOrderItems(int id, Callback<ArrayList<ItemModel>> callback) throws StorageException
 	{
 		Call<ArrayList<ItemModel>> call = api.getOrderItems(id);
-		Response<ArrayList<ItemModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
-		for(IItemModel o : response.body())
-		{
-			tmp.add(o);
-		}
-		return tmp;
+		//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+		call.enqueue(callback);
 	}
 	
-	public ArrayList<IItemModel> getOrderItems() throws StorageException
+	public void getOrderItems(Callback<ArrayList<ItemModel>> callback) throws StorageException
 	{
 		Call<ArrayList<ItemModel>> call = api.getOrderItems();
-		Response<ArrayList<ItemModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
-		for(IItemModel o : response.body())
-		{
-			tmp.add(o);
-		}
-		return tmp;
+		//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+		call.enqueue(callback);
 	}
 	@Override
-	public IOrderModel getOrder(int id) throws StorageException {
+	public void getOrder(int id, Callback<OrderModel> callback) throws StorageException {
 		Call<OrderModel> call = api.getOrder(id);
-		Response<OrderModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		response.body().setItems(getOrderItems(id));
-		return response.body();
+		//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+		call.enqueue(callback);
 	}
 
 	@Override
-	public ArrayList<IOrderModel> getOrders(int id) throws StorageException {
+	public void getOrders(int id,Callback<ArrayList<OrderModel>> callback) throws StorageException {
 		Call<ArrayList<OrderModel>> call = api.getOrders(id);
-		Response<ArrayList<OrderModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IOrderModel> tmp = new ArrayList<IOrderModel>();
+			call.enqueue(callback);
+//		ArrayList<IOrderModel> tmp = new ArrayList<IOrderModel>();
 		//I originally wanted to do this using a sql join but i've run into trouble getting the order object
 		//to properly serialize with items in it. So instead we'll get the shell of all orders here and fetch the items
 		//we need when we need them by calling getOrderItems
 		//No order should have a number of items significant enough to cause any real problems.
-		ArrayList<IItemModel> allItems = getOrderItems();
-		for(IOrderModel o : response.body())
-		{
-
-			tmp.add(o);
-		}
-		return tmp;
+//		ArrayList<IItemModel> allItems = getOrderItems();
+//		for(IOrderModel o : response.body())
+//		{
+//
+//			tmp.add(o);
+//		}
 	}
 
 	@Override
-	public ArrayList<IOrderModel> getOrders() throws StorageException {
+	public void getOrders(Callback<ArrayList<OrderModel>> callback) throws StorageException {
 		Call<ArrayList<OrderModel>> call = api.getOrders();
-		Response<ArrayList<OrderModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IOrderModel> tmp = new ArrayList<IOrderModel>();
-		for(IOrderModel o : response.body())
-		{
-			tmp.add(o);
-		}
-		return tmp;
+		call.enqueue(callback);
 	}
 
 	@Override
-	public IUserModel getUser(int id) throws StorageException {
+	public void getUser(int id, Callback<UserModel> callback) throws StorageException {
 		Call<UserModel> call = api.getUser(id);
-		Response<UserModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return response.body();
+		call.enqueue(callback);
 	}
 
 	@Override
-	public IUserModel getUser(String username, String password) throws StorageException {
+	public void getUser(String username, String password,Callback<UserModel> callback) throws StorageException {
 		Call<UserModel> call = api.getUser(username,password);
-		Response<UserModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return response.body();
+		call.enqueue(callback);
 	}
 
 	@Override
-	public ArrayList<IUserModel> getUsers() throws StorageException {
+	public void getUsers(Callback<ArrayList<UserModel>> callback) throws StorageException {
 		Call<ArrayList<UserModel>> call = api.getUsers();
-		Response<ArrayList<UserModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IUserModel> tmp = new ArrayList<IUserModel>();
-		for(IUserModel o : response.body())
-		{
-			tmp.add(o);
-		}
-		return tmp;
+		call.enqueue(callback);
 	}
 
 	@Override
-	public void saveUser(IUserModel model) throws StorageException {
+	public void saveUser(IUserModel model, Callback<UserModel> callback) throws StorageException {
 		Call<UserModel> call = api.saveUser(model);
-		Response<UserModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new StorageException("Failed to save IUserModel!",e);
-		}
-		if(!response.isSuccess())
-			throw new StorageException("Failed to save IUserModel! Unkown reason!");
+		call.enqueue(callback);
 	}
 
 	@Override
-	public void saveItem(IItemModel model) throws StorageException {
+	public void saveItem(IItemModel model, Callback<ItemModel> callback) throws StorageException {
 		Call<ItemModel> call = api.saveItem(model);
-		Response<ItemModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new StorageException("Failed to save IItemModel!",e);
-		}
-		if(!response.isSuccess())
-			throw new StorageException("Failed to save IItemModel! Unkown reason!");
+		call.enqueue(callback);
 		
 	}
 
 	@Override
-	public void saveMenu(IMenuModel model) throws StorageException {
+	public void saveMenu(IMenuModel model, Callback<MenuModel> callback) throws StorageException {
 		Call<MenuModel> call = api.saveMenu(model);
-		Response<MenuModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new StorageException("Failed to save IMenuModel!",e);
-		}
-		if(!response.isSuccess())
-			throw new StorageException("Failed to save IMenuModel! Unkown reason!");
+		call.enqueue(callback);
 		
 	}
 
 	@Override
-	public void saveOrder(IOrderModel model) throws StorageException {
+	public void saveOrder(IOrderModel model, Callback<OrderModel> callback) throws StorageException {
 		Call<OrderModel> call = api.saveOrder(model);
-		Response<OrderModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new StorageException("Failed to save IOrderModel!",e);
-		}
-		if(!response.isSuccess())
-			throw new StorageException("Failed to save IOrderModel! Unkown reason!");
+		call.enqueue(callback);
 		
 	}
 
 	@Override
-	public void savePayment(IPaymentModel model) throws StorageException {
+	public void savePayment(IPaymentModel model, Callback<PaymentModel> callback) throws StorageException {
 		Call<PaymentModel> call = api.savePayment(model);
-		Response<PaymentModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new StorageException("Failed to save IPaymentModel!",e);
-		}
-		if(!response.isSuccess())
-			throw new StorageException("Failed to save IPaymentModel! Unkown reason!");
+		call.enqueue(callback);
 		
 	}
 
 	
 	@Override
-	public boolean validateUsername(String name) throws StorageException {
+	public void validateUsername(String name, Callback<UserModel> callback) throws StorageException {
 		Call<UserModel> call = api.getUser(name);
-		Response<UserModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return true;
-		}
-		return response.body() == null;
+		call.enqueue(callback);
 	}
 
 

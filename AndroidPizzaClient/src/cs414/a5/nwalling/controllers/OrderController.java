@@ -11,9 +11,13 @@ import cs414.a5.nwalling.enums.OrderStatus;
 import cs414.a5.nwalling.exceptions.StorageException;
 
 import java.util.ArrayList;
+
+import cs414.a5.nwalling.models.IItemModel;
 import cs414.a5.nwalling.models.IMenuModel;
 import cs414.a5.nwalling.models.IOrderModel;
+import cs414.a5.nwalling.models.ItemModel;
 import cs414.a5.nwalling.models.MenuModel;
+import cs414.a5.nwalling.models.OrderModel;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
@@ -22,7 +26,7 @@ import retrofit.Retrofit;
  *
  * @author Jacob
  */
-public class OrderController extends AbstractController implements IOrderController, Callback {
+public class OrderController extends AbstractController implements IOrderController, Callback<ArrayList<ItemModel>> {
     public static final transient String PROP_MENU = "menu";
     //This is a hack to get it working.
     private IMenuModel menu;
@@ -36,6 +40,17 @@ public class OrderController extends AbstractController implements IOrderControl
         this.modelFactory = modelFactory;
         this.menu = modelFactory.getEmptyIMenuModel();
         this.order = modelFactory.getEmptyIOrderModel();
+    }
+    
+    @Override
+    public void fetchMenu()
+    {
+    	try {
+			source.getMenu(this);
+		} catch (StorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public ArrayList<String> getMenu()
@@ -57,14 +72,29 @@ public class OrderController extends AbstractController implements IOrderControl
 
     @Override
     public ArrayList<String> getOrder() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	return null;
     }
 
     @Override
     public boolean saveOrder() {
     	
     	try {
-			source.saveOrder(order);
+			source.saveOrder(order, new Callback<OrderModel>() {
+
+				@Override
+				public void onFailure(Throwable arg0) {
+					// TODO Auto-generated method stub
+					//display error
+				}
+
+				@Override
+				public void onResponse(Response<OrderModel> arg0, Retrofit arg1) {
+					// TODO Auto-generated method stub
+					//do nothing it was successful
+				}
+				
+			});
 		} catch (StorageException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,8 +116,13 @@ public class OrderController extends AbstractController implements IOrderControl
 	}
 
 	@Override
-	public void onResponse(Response arg0, Retrofit arg1) {
-		// TODO Auto-generated method stub
-		
+	public void onResponse(Response<ArrayList<ItemModel>> response, Retrofit arg1) {
+		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
+		for(IItemModel o : response.body())
+		{
+			tmp.add(o);
+		}
+		menu = modelFactory.getEmptyIMenuModel();
+		menu.setItems(tmp);
 	}
 }

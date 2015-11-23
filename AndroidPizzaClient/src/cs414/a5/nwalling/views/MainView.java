@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.controllers.IMenuController;
 import cs414.a5.nwalling.data.AndroidRESTClient;
 import cs414.a5.nwalling.data.ControllerFactory;

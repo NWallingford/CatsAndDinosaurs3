@@ -5,16 +5,24 @@
  */
 package cs414.a5.nwalling.controllers;
 
+import java.util.ArrayList;
+
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.IModelFactory;
 import cs414.a5.nwalling.exceptions.StorageException;
+import cs414.a5.nwalling.models.IItemModel;
 import cs414.a5.nwalling.models.IMenuModel;
+import cs414.a5.nwalling.models.ItemModel;
+import cs414.a5.nwalling.models.MenuModel;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  *
  * @author Jacob
  */
-public class ChangeMenuController extends AbstractController implements IChangeMenuController{
+public class ChangeMenuController extends AbstractController implements IChangeMenuController, Callback<ArrayList<ItemModel>>{
 
     private IMenuModel model;
     private IModelFactory modelFactory;
@@ -46,16 +54,52 @@ public class ChangeMenuController extends AbstractController implements IChangeM
     
     @Override
     public void save() {
-    	try {
-			source.saveMenu(model);
-		} catch (StorageException e) {
-			//Failed! Do work here
-		}
+			try {
+				source.saveMenu(model,new Callback<MenuModel>(){
+
+					@Override
+					public void onFailure(Throwable arg0) {
+						//Display error
+					}
+
+					@Override
+					public void onResponse(Response<MenuModel> arg0, Retrofit arg1) {
+						//DO nothing it was successful! yay
+						
+					}
+					
+				});
+			} catch (StorageException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     }
 
     @Override
     public void getCurrentMenu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+			source.getMenu(this);
+		} catch (StorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
+
+	@Override
+	public void onFailure(Throwable ex) {
+		//If it fails to pull the items do something in the view
+		//display pretty message in lable?
+	}
+
+	@Override
+	public void onResponse(Response<ArrayList<ItemModel>> response, Retrofit retrofit) {
+		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
+		for(IItemModel o : response.body())
+		{
+			tmp.add(o);
+		}
+		model = modelFactory.getEmptyIMenuModel();
+		model.setItems(tmp);
+	}
     
 }

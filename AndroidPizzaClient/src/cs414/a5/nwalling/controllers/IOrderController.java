@@ -18,7 +18,7 @@ public interface IOrderController extends IController{
     
     void addToOrder(int[] indicies);
     void removeFromOrder(int[] indicies);
-    
+    void fetchMenu();
     String getOrderStatus();
     boolean saveOrder();
 }
