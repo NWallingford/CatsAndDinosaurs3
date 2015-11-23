@@ -8,13 +8,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cs414.a5.nwalling.android.views.ChefView" >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inprogress Orders" />
+
+            <ListView
+                android:id="@+id/incompleteList"
+                android:layout_width="wrap_content"
+                android:layout_height="155dp" >
+            </ListView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/markDoneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="markDonePressed"
+            android:text="Mark Done" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|right"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Orders" />
+
+            <ListView
+                android:id="@+id/completedList"
+                android:layout_width="wrap_content"
+                android:layout_height="126dp" >
+            </ListView>
+        </LinearLayout>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Back" 
-        android:onClick="backButtonPressed"/>
+        android:onClick="backButtonPressed"
+        android:text="Back" />
 
 </RelativeLayout>

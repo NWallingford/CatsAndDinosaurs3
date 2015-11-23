@@ -9,7 +9,7 @@
     tools:context="cs414.a5.nwalling.android.views.UpdateMenuView" >
 	
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/incompleteList"
         android:layout_width="wrap_content"
         android:layout_height="200dp" >
 
@@ -19,7 +19,7 @@
         android:id="@+id/editSelectedItemButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listview"
+        android:layout_below="@+id/incompleteList"
         android:layout_centerInParent="true"
         android:text="Edit Selected Item" 
         android:onClick="editSelectedItemButtonPressed"/>
