@@ -9,7 +9,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.android.controllers.IOrderController;
 import cs414.a5.nwalling.android.controllers.IPaymentController;
@@ -24,7 +32,19 @@ public class CheckoutView extends Activity implements Observer {
 
 	private IPaymentController controller;
 	private UserModel user;
-	EditText address, zipCode, frstName, lastName;
+	
+	
+	EditText firstNameField,
+	lastNameField,
+	addressField,
+	zipField,
+	cardFirstNameField,
+	cardLastNameField,
+	cardNumberField,
+	cardExpDateField;
+	RadioButton card,cash;
+	CheckBox deliver;
+	LinearLayout cardLayout, addressLayout;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

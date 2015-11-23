@@ -173,7 +173,7 @@
                         android:text="Expiration Date" />
 
                     <EditText
-                        android:id="@+id/expDate"
+                        android:id="@+id/expDateField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
