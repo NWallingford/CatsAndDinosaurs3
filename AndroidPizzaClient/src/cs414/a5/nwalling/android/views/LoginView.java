@@ -29,7 +29,7 @@ public class LoginView extends Activity implements Observer {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_view);
 		IDataSource source = new AndroidRESTClient();
-		username =(EditText)findViewById(R.id.editText);
+		username =(EditText)findViewById(R.id.usernameQuery);
 		password =(EditText)findViewById(R.id.address);
 		try {	source.load();
 		} catch (LoadException e) {
