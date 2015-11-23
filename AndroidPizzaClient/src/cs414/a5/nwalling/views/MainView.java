@@ -1,19 +1,51 @@
 package cs414.a5.nwalling.views;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import cs414.a5.nwalling.R;
+import cs414.a5.nwalling.controllers.IMenuController;
+import cs414.a5.nwalling.data.AndroidRESTClient;
+import cs414.a5.nwalling.data.ControllerFactory;
+import cs414.a5.nwalling.data.IDataSource;
+import cs414.a5.nwalling.data.ModelFactory;
+import cs414.a5.nwalling.exceptions.LoadException;
 
 public class MainView extends Activity {
-
+	
+	IMenuController controller;
+	ArrayList<String> menu;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
+		IDataSource source = new AndroidRESTClient();
+		
+		try {	source.load();
+		} catch (LoadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ModelFactory mf = new ModelFactory(source);
+		ControllerFactory cf = new ControllerFactory(mf,source);
+		controller = cf.getMenuController();
+		controller.fetchMenu();
+		menu = controller.getMenu();
+		TextView textField = new TextView(this);
+		textField=(TextView)findViewById(R.id.menu);
+		String menuStr = "";
+		for(String m:menu){
+			menuStr = menuStr + m + '\n';
+		}
+	    textField.setText(menuStr);
+			
 	}
 
 	@Override

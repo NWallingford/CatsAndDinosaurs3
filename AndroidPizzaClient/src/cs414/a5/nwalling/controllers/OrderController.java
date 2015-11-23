@@ -14,12 +14,15 @@ import java.util.ArrayList;
 import cs414.a5.nwalling.models.IMenuModel;
 import cs414.a5.nwalling.models.IOrderModel;
 import cs414.a5.nwalling.models.MenuModel;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  *
  * @author Jacob
  */
-public class OrderController extends AbstractController implements IOrderController {
+public class OrderController extends AbstractController implements IOrderController, Callback {
     public static final transient String PROP_MENU = "menu";
     //This is a hack to get it working.
     private IMenuModel menu;
@@ -75,4 +78,16 @@ public class OrderController extends AbstractController implements IOrderControl
     public String getOrderStatus() {
         return status.toString();
     }
+
+	@Override
+	public void onFailure(Throwable arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onResponse(Response arg0, Retrofit arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 }

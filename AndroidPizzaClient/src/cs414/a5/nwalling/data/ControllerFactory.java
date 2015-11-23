@@ -25,6 +25,11 @@ public class ControllerFactory implements IControllerFactory{
     public ILoginController getLoginController() {
         return new LoginController(modelFactory, source);
     }
+    
+    @Override
+    public IMenuController getMenuController() {
+        return new MenuController(modelFactory, source);
+    }
 
     @Override
     public IChangeMenuController getChangeMenuController() {

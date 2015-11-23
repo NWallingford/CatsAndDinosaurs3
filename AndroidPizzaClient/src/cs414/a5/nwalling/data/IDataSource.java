@@ -9,6 +9,7 @@ import cs414.a5.nwalling.exceptions.LoadException;
 import cs414.a5.nwalling.exceptions.StorageException;
 import java.util.ArrayList;
 import cs414.a5.nwalling.models.*;
+import retrofit.Callback;
 
 /**
  *
@@ -17,9 +18,9 @@ import cs414.a5.nwalling.models.*;
 public interface IDataSource {
     void load() throws LoadException;
     
-    IItemModel getItem(int id) throws StorageException;
-    ArrayList<IItemModel> getItems() throws StorageException;
-    IMenuModel getMenu() throws StorageException;
+    void getItem(int id,Callback<ItemModel> callback) throws StorageException;
+    void getItems(Callback<ArrayList<ItemModel>> callback) throws StorageException;
+    void getMenu(Callback<ArrayList<ItemModel>> callback) throws StorageException;
     IOrderModel getOrder(int id) throws StorageException;
     ArrayList<IOrderModel> getOrders(int id) throws StorageException;
     ArrayList<IOrderModel> getOrders() throws StorageException;//returns only active orders

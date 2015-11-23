@@ -5,13 +5,7 @@
  */
 package cs414.a5.nwalling.data;
 
-import cs414.a5.nwalling.controllers.IEditAccountController;
-import cs414.a5.nwalling.controllers.IChangeMenuController;
-import cs414.a5.nwalling.controllers.IChefController;
-import cs414.a5.nwalling.controllers.ICreateAccountController;
-import cs414.a5.nwalling.controllers.ILoginController;
-import cs414.a5.nwalling.controllers.IOrderController;
-import cs414.a5.nwalling.controllers.IPaymentController;
+import cs414.a5.nwalling.controllers.*;
 
 /**
  *
@@ -25,4 +19,5 @@ public interface IControllerFactory {
     IOrderController getOrderController();
     IPaymentController getPaymentController();
     IEditAccountController getEditAccountController();
+    IMenuController getMenuController();
 }

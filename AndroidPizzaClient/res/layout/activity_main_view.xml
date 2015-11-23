@@ -1,66 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cs414.a5.nwalling.views.MainView" >
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainView">
 
-    <Button
-        android:id="@+id/chefViewButton"
-        android:layout_width="wrap_content"
+    <TextView android:text="Welcome, Guest!" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:textSize="20dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"
-        android:onClick="chefViewButtonPressed"
-        android:text="Chef View" />
-
-    <Button
-        android:id="@+id/makeOrderButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/chefViewButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="makeOrderButtonPressed"
-        android:text="Make Order" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/loginButton"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/makeOrderButton"
-        android:layout_centerHorizontal="true"
-        android:text="Login" 
-        android:onClick="loginButtonPressed"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:onClick="loginButtonPressed"
+        android:text="Log In"
+        android:textSize="15dp" />
 
-    <Button
-        android:id="@+id/createAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        style="@style/AppTheme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
-        android:text="Create Account" 
-        android:onClick="createAccountButtonPressed"/>
+        android:elevation="-10dp"
+        android:onClick="createAccountButtonPressed" >
 
-    <Button
-        android:id="@+id/updateMenuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/createAccountButton"
-        android:layout_centerHorizontal="true"
-        android:text="Update Menu" 
-        android:onClick="updateMenuButtonPressed"/>
+        <Button
+            android:id="@+id/makeOrderButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:elevation="-10dp"
+            android:onClick="makeOrderButtonPressed"
+            android:text="Place Order" />
 
-    <Button
-        android:id="@+id/viewMenuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/makeOrderButton"
-        android:layout_below="@+id/updateMenuButton"
-        android:text="View Menu" 
-        android:onClick="viewMenuButtonPressed"/>
+        <Button
+            android:id="@+id/createAccountButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:elevation="-10dp"
+            android:onClick="createAccountButtonPressed"
+            android:text="Create Account" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu:"
+            android:id="@+id/menu"
+            android:layout_below="@+id/makeOrderButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:elevation="-20dp"
+            android:layout_above="@+id/chefViewButton" />
+
+        <Button
+            android:id="@+id/chefViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/makeOrderButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:elevation="-10dp"
+            android:onClick="chefViewButtonPressed"
+            android:text="View Orders" />
+
+        <Button
+            android:id="@+id/updateMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chefViewButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/createAccountButton"
+            android:layout_alignTop="@+id/chefViewButton"
+            android:elevation="-10dp"
+            android:onClick="updateMenuButtonPressed"
+            android:text="Edit Menu" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

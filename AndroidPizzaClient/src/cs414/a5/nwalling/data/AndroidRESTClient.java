@@ -9,6 +9,7 @@ import cs414.a5.nwalling.models.*;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 import retrofit.Call;
+import retrofit.Callback;
 import retrofit.Response;
 
 public class AndroidRESTClient implements IDataSource{
@@ -20,7 +21,7 @@ public class AndroidRESTClient implements IDataSource{
 	@Override
 	public void load() {
 		Retrofit retrofit = new Retrofit.Builder()
-    			.baseUrl("http://localhost:8080/PizzaWebService/webresources/PizzaService/")
+    			.baseUrl("http://10.84.44.76:8080/PizzaWebService/webresources/PizzaService/")
     			.addConverterFactory(GsonConverterFactory.create())
     			.build();
     	
@@ -29,45 +30,29 @@ public class AndroidRESTClient implements IDataSource{
 
 	
 	@Override
-	public IItemModel getItem(int id) {
+	public void getItem(int id, Callback<ItemModel> callback) {
 		Call<ItemModel> call = api.getItem(id);
 		Response<ItemModel> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return response.body();
+		//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+		call.enqueue(callback);
 	}
 
 	@Override
-	public ArrayList<IItemModel> getItems() throws StorageException {
+	public void getItems(Callback<ArrayList<ItemModel>> callback) throws StorageException {
 		Call<ArrayList<ItemModel>> call = api.getItems();
-		Response<ArrayList<ItemModel>> response = null;
-		try {
-			//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
-			response = call.execute();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		ArrayList<IItemModel> tmp = new ArrayList<IItemModel>();
-		for(IItemModel o : response.body())
-		{
-			tmp.add(o);
-		}
-		return tmp;
+		//For now we'll do things synchronously. Maybe update it later to be async(might require a fair amount of change to the models or system.
+		call.enqueue(callback);
+		
+//		return tmp;
 	}
 
 	@Override
-	public IMenuModel getMenu() throws StorageException {
-		ArrayList<IItemModel> items = getItems();
-		
-		MenuModel m = new MenuModel();
-		m.setItems(items);
-		return m;
+	public void getMenu(Callback<ArrayList<ItemModel>> callback) throws StorageException {
+		getItems(callback);
+//		
+//		MenuModel m = new MenuModel();
+//		m.setItems(items);
+//		return m;
 	}
 
 	public ArrayList<IItemModel> getOrderItems(int id) throws StorageException
