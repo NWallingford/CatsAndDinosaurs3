@@ -10,6 +10,7 @@ import cs414.a5.nwalling.R;
 
 public class MenuView extends Activity {
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

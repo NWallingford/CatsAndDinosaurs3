@@ -95,5 +95,7 @@ public class ChefController extends AbstractController implements IChefControlle
 		{
 			orders.add(m);
 		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.controllers.IMenuController;
 import cs414.a5.nwalling.data.AndroidRESTClient;
 import cs414.a5.nwalling.data.ControllerFactory;
@@ -26,7 +27,10 @@ public class MainView extends Activity implements Observer {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
-		IDataSource source = new AndroidRESTClient();
+		IDataSource source;
+//		if(!getIntent().hasExtra("settings"))
+//		{
+		source = new AndroidRESTClient();
 		
 		try {	source.load();
 		} catch (LoadException e) {
@@ -36,20 +40,21 @@ public class MainView extends Activity implements Observer {
 		
 		ModelFactory mf = new ModelFactory(source);
 		ControllerFactory cf = new ControllerFactory(mf,source);
+//		}
+//		else
+//		{
+//			Bundle settings = getIntent().getBundleExtra("settings");
+//			source = settings.get
+//		}
 		controller = cf.getMenuController();
-		
+			
 		((Observable)controller).addObserver(this);
+			
 		
 		
+
 		controller.fetchMenu();
-		menu = controller.getMenu();
-		TextView textField = new TextView(this);
-		textField=(TextView)findViewById(R.id.menu);
-		String menuStr = "";
-		for(String m:menu){
-			menuStr = menuStr + m + '\n';
-		}
-	    textField.setText(menuStr);
+		
 			
 	}
 
@@ -104,7 +109,14 @@ public class MainView extends Activity implements Observer {
 
 	@Override
 	public void update(Observable observable, Object data) {
-		// TODO Auto-generated method stub
-		//Refresh your view here!
+		menu = controller.getMenu();
+		TextView textField = new TextView(this);
+		textField=(TextView)findViewById(R.id.menu);
+		String menuStr = "Menu:\n";
+		for(String m:menu){
+			menuStr = menuStr + m + '\n';
+		}
+	    textField.setText(menuStr);
 	}
+	
 }

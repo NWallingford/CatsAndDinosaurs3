@@ -1,5 +1,8 @@
 package cs414.a5.nwalling.views;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +10,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import cs414.a5.nwalling.R;
+import cs414.a5.nwalling.controllers.ICreateAccountController;
+import cs414.a5.nwalling.data.AndroidRESTClient;
+import cs414.a5.nwalling.data.ControllerFactory;
+import cs414.a5.nwalling.data.IDataSource;
+import cs414.a5.nwalling.data.ModelFactory;
+import cs414.a5.nwalling.exceptions.LoadException;
 
-public class CreateAccountView extends Activity {
+public class CreateAccountView extends Activity implements Observer {
 
+	private ICreateAccountController controller;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_account_view);
+		
+		IDataSource source = new AndroidRESTClient();
+		
+		try {	source.load();
+		} catch (LoadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ModelFactory mf = new ModelFactory(source);
+		ControllerFactory cf = new ControllerFactory(mf,source);
+		controller = cf.getCreateAccountController();
+		((Observable)controller).addObserver(this);
+		
 	}
 
 	@Override
@@ -43,5 +67,11 @@ public class CreateAccountView extends Activity {
 	public void submitButtonPressed(View view){
 		Intent i = new Intent(CreateAccountView.this, MainView.class);
 		startActivity(i);
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -116,6 +116,8 @@ public class CreateAccountController extends AbstractController implements ICrea
 	public void onResponse(Response<UserModel> response, Retrofit arg1) {
 		// TODO Auto-generated method stub
 		nameFree = response.body() == null;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 //    public void submit(int creatorAuth){

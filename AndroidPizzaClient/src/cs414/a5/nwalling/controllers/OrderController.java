@@ -124,5 +124,7 @@ public class OrderController extends AbstractController implements IOrderControl
 		}
 		menu = modelFactory.getEmptyIMenuModel();
 		menu.setItems(tmp);
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

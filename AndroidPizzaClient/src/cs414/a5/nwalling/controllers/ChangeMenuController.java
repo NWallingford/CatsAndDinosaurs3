@@ -100,6 +100,8 @@ public class ChangeMenuController extends AbstractController implements IChangeM
 		}
 		model = modelFactory.getEmptyIMenuModel();
 		model.setItems(tmp);
+		this.setChanged();
+		this.notifyObservers();
 	}
     
 }

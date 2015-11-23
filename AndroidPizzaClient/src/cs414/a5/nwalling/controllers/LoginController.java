@@ -66,5 +66,7 @@ public class LoginController extends AbstractController implements ILoginControl
 	@Override
 	public void onResponse(Response<UserModel> response, Retrofit arg1) {
 		model = response.body();
+		this.setChanged();
+		this.notifyObservers();
 	}
 }
