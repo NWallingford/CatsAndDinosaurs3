@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.controllers.IMenuController;
 import cs414.a5.nwalling.data.AndroidRESTClient;
 import cs414.a5.nwalling.data.ControllerFactory;
@@ -42,14 +43,7 @@ public class MainView extends Activity implements Observer {
 		
 		
 		controller.fetchMenu();
-		menu = controller.getMenu();
-		TextView textField = new TextView(this);
-		textField=(TextView)findViewById(R.id.menu);
-		String menuStr = "";
-		for(String m:menu){
-			menuStr = menuStr + m + '\n';
-		}
-	    textField.setText(menuStr);
+		
 			
 	}
 
@@ -104,7 +98,14 @@ public class MainView extends Activity implements Observer {
 
 	@Override
 	public void update(Observable observable, Object data) {
-		// TODO Auto-generated method stub
-		//Refresh your view here!
+		menu = controller.getMenu();
+		TextView textField = new TextView(this);
+		textField=(TextView)findViewById(R.id.menu);
+		String menuStr = "Menu:\n";
+		for(String m:menu){
+			menuStr = menuStr + m + '\n';
+		}
+	    textField.setText(menuStr);
 	}
+	
 }
