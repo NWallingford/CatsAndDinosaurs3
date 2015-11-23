@@ -137,7 +137,6 @@ public class MainView extends Activity implements Observer {
 		}
 		else{	// if you're anybody else, log out (go back to main view without passing user with the intent)
 			Intent i = new Intent(MainView.this, MainView.class);
-			if(user != null) i.putExtra("user",user);
 			startActivity(i);
 			finish();
 		}

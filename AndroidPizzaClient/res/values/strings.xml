@@ -12,5 +12,6 @@
     <string name="title_activity_make_order_view">Create Your Order</string>
     <string name="title_activity_checkout_view">Checkout</string>
     <string name="title_activity_menu_view">Menu</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

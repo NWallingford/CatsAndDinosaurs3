@@ -167,7 +167,7 @@
                         android:inputType="number" />
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/titleTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Expiration Date" />

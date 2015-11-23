@@ -43,7 +43,7 @@ public class CreateAccountController extends AbstractController implements ICrea
     public boolean createUser() {
         //Do validation on fields here
 //        return model.save();
-    	
+    	model.setAuthLevel(4);
     	try {
 			source.saveUser(model,new Callback<UserModel>() {
 

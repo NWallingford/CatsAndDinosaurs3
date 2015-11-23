@@ -30,7 +30,7 @@ public class LoginView extends Activity implements Observer {
 		setContentView(R.layout.activity_login_view);
 		IDataSource source = new AndroidRESTClient();
 		username =(EditText)findViewById(R.id.usernameQuery);
-		password =(EditText)findViewById(R.id.address);
+		password =(EditText)findViewById(R.id.passwordAttempt);
 		try {	source.load();
 		} catch (LoadException e) {
 			// TODO Auto-generated catch block

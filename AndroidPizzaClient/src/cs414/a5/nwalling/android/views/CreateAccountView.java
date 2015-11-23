@@ -137,12 +137,15 @@ public class CreateAccountView extends Activity implements Observer {
 	public void backButtonPressed(View view){
 		Intent i = new Intent(CreateAccountView.this, MainView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	public void submitButtonPressed(View view){
+		
 		controller.createUser();
 		Intent i = new Intent(CreateAccountView.this, MainView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	@Override
