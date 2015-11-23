@@ -16,6 +16,7 @@ import cs414.a5.nwalling.android.data.ControllerFactory;
 import cs414.a5.nwalling.android.data.IDataSource;
 import cs414.a5.nwalling.android.data.ModelFactory;
 import cs414.a5.nwalling.android.exceptions.LoadException;
+import cs414.a5.nwalling.android.models.UserModel;
 
 public class LoginView extends Activity implements Observer {
 
@@ -66,9 +67,9 @@ public class LoginView extends Activity implements Observer {
 		controller.login();
 		//end log in logic
 			
-		//UserModel user = (UserModel) controller.getUser();		
+		UserModel user = (UserModel) controller.getUser();		
 		Intent i = new Intent(LoginView.this, MainView.class);
-		//i.putExtra("user",user);
+		i.putExtra("user",user);
 		startActivity(i);
 	}
 	

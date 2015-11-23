@@ -29,15 +29,22 @@ public class MainView extends Activity implements Observer {
 	
 	Button chefViewButton;
 	Button changeMenuButton;
-	
+	TextView username;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
 		IDataSource source;
+		username =(TextView)findViewById(R.id.username);
 		if(getIntent().hasExtra("user")){
 			user = (UserModel)getIntent().getSerializableExtra("user");
+			username.setText("Hello, "+user.getUsername()+"!");
 		}
+		else{
+			username.setText("Hello, Guest!");
+		}
+		
+		
 		source = new AndroidRESTClient();
 		
 		try {	source.load();
