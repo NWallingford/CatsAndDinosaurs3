@@ -16,18 +16,20 @@ import cs414.a5.nwalling.data.ControllerFactory;
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.ModelFactory;
 import cs414.a5.nwalling.exceptions.LoadException;
+import cs414.a5.nwalling.models.IUserModel;
+import cs414.a5.nwalling.models.UserModel;
 
 public class LoginView extends Activity implements Observer {
 
 	private ILoginController controller;
+	private UserModel user;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_view);
-		
 		IDataSource source = new AndroidRESTClient();
-		
+		user = (UserModel)getIntent().getSerializableExtra("user");
 		try {	source.load();
 		} catch (LoadException e) {
 			// TODO Auto-generated catch block
@@ -38,6 +40,7 @@ public class LoginView extends Activity implements Observer {
 		ControllerFactory cf = new ControllerFactory(mf,source);
 		controller = cf.getLoginController();
 		((Observable)controller).addObserver(this);
+		
 	}
 
 	@Override
@@ -60,7 +63,15 @@ public class LoginView extends Activity implements Observer {
 	}
 	
 	public void submitButtonPressed(View view){
+		//log in logic
+		controller.setUsername("Nick");
+		controller.setPassword("cats");
+		controller.login();
+		//end log in logic
+		
+		UserModel user = (UserModel) controller.getUser();		
 		Intent i = new Intent(LoginView.this, MainView.class);
+		i.putExtra("user",user);
 		startActivity(i);
 	}
 	

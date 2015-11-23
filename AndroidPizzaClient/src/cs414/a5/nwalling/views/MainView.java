@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.controllers.IMenuController;
@@ -18,19 +19,31 @@ import cs414.a5.nwalling.data.ControllerFactory;
 import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.ModelFactory;
 import cs414.a5.nwalling.exceptions.LoadException;
+import cs414.a5.nwalling.models.UserModel;
 
 public class MainView extends Activity implements Observer {
 	
 	IMenuController controller;
 	ArrayList<String> menu;
+	UserModel user;
+	
+	Button chefViewButton;
+	Button changeMenuButton;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
 		IDataSource source;
-//		if(!getIntent().hasExtra("settings"))
-//		{
+		if(!getIntent().hasExtra("settings")){
+			user = (UserModel)getIntent().getSerializableExtra("user");
+		}
 		source = new AndroidRESTClient();
+		chefViewButton = (Button) findViewById(R.id.chefViewButton);
+		changeMenuButton = (Button) findViewById(R.id.updateMenuButton);
+		chefViewButton.setVisibility(View.VISIBLE);
+		changeMenuButton.setVisibility(View.VISIBLE);
 		
 		try {	source.load();
 		} catch (LoadException e) {
@@ -47,12 +60,7 @@ public class MainView extends Activity implements Observer {
 //			source = settings.get
 //		}
 		controller = cf.getMenuController();
-			
 		((Observable)controller).addObserver(this);
-			
-		
-		
-
 		controller.fetchMenu();
 		
 			

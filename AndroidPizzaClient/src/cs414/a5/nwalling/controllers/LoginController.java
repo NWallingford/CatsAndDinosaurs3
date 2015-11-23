@@ -57,6 +57,10 @@ public class LoginController extends AbstractController implements ILoginControl
         model.setPassword(value);
     }
 
+    public IUserModel getUser(){
+    	return model;
+    }
+    
 	@Override
 	public void onFailure(Throwable arg0) {
 		// TODO Auto-generated method stub

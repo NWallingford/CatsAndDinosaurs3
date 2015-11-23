@@ -74,7 +74,8 @@
             android:layout_alignParentStart="true"
             android:elevation="-10dp"
             android:onClick="chefViewButtonPressed"
-            android:text="View Orders" />
+            android:text="View Orders"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/updateMenuButton"
@@ -86,7 +87,8 @@
             android:layout_alignTop="@+id/chefViewButton"
             android:elevation="-10dp"
             android:onClick="updateMenuButtonPressed"
-            android:text="Edit Menu" />
+            android:text="Edit Menu"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
