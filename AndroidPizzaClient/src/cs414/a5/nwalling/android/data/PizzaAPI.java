@@ -37,15 +37,15 @@ public interface PizzaAPI {
 	@GET("Get/User/{username}")
 	Call<UserModel> getUser(@Path("username") String username);
 	@POST("Save/User")
-	Call<UserModel> saveUser(@Body IUserModel model);
+	Call<UserModel> saveUser(@Body UserModel model);
 	@POST("Save/Item")
-	Call<ItemModel> saveItem(@Body IItemModel model);
+	Call<ItemModel> saveItem(@Body ItemModel model);
 	@POST("Save/Menu")
-	Call<MenuModel> saveMenu(@Body IMenuModel model);
+	Call<MenuModel> saveMenu(@Body MenuModel model);
 	@POST("Save/Order")
-	Call<OrderModel> saveOrder(@Body IOrderModel model);
+	Call<OrderModel> saveOrder(@Body OrderModel model);
 	@POST("Save/Payment")
-	Call<PaymentModel> savePayment(@Body IPaymentModel model);
+	Call<PaymentModel> savePayment(@Body PaymentModel model);
 	
 
 }

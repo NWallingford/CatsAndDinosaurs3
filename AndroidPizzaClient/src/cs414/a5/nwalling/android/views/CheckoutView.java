@@ -59,6 +59,7 @@ public class CheckoutView extends Activity implements Observer {
 	}
 	
 	public void confirmButtonPressed(View view){
+		controller.submit();
 		Intent i = new Intent(CheckoutView.this, MainView.class);
 		startActivity(i);
 	}

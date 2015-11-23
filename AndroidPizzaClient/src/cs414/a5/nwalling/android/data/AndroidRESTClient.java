@@ -118,36 +118,34 @@ public class AndroidRESTClient implements IDataSource{
 
 	@Override
 	public void saveUser(IUserModel model, Callback<UserModel> callback) throws StorageException {
-		Call<UserModel> call = api.saveUser(model);
+		Call<UserModel> call = api.saveUser((UserModel) model);
 		call.enqueue(callback);
 	}
 
 	@Override
 	public void saveItem(IItemModel model, Callback<ItemModel> callback) throws StorageException {
-		Call<ItemModel> call = api.saveItem(model);
+		Call<ItemModel> call = api.saveItem((ItemModel) model);
 		call.enqueue(callback);
 		
 	}
 
 	@Override
 	public void saveMenu(IMenuModel model, Callback<MenuModel> callback) throws StorageException {
-		Call<MenuModel> call = api.saveMenu(model);
+		Call<MenuModel> call = api.saveMenu((MenuModel) model);
 		call.enqueue(callback);
 		
 	}
 
 	@Override
 	public void saveOrder(IOrderModel model, Callback<OrderModel> callback) throws StorageException {
-		Call<OrderModel> call = api.saveOrder(model);
+		Call<OrderModel> call = api.saveOrder((OrderModel) model);
 		call.enqueue(callback);
-		
 	}
 
 	@Override
 	public void savePayment(IPaymentModel model, Callback<PaymentModel> callback) throws StorageException {
-		Call<PaymentModel> call = api.savePayment(model);
+		Call<PaymentModel> call = api.savePayment((PaymentModel) model);
 		call.enqueue(callback);
-		
 	}
 
 	
