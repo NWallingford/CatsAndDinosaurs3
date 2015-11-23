@@ -7,15 +7,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.pizzaapp.pizzaplace.pizzaandroidclient.CreateAccountView">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create Account"
-        android:id="@+id/textView4"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,8 +35,18 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/firstNameField" />
+                    android:id="@+id/firstNameField" >
+
+                    <requestFocus />
+
+                </EditText>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/firstNameError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -66,6 +67,12 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/lastNameError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -85,6 +92,12 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/usernameError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -102,6 +115,12 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/passwordField" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/passwordError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -121,6 +140,12 @@
                     android:id="@+id/emailField" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/emailError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -139,23 +164,35 @@
                     android:id="@+id/addressField" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/addressError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Zip code"
-                    android:id="@+id/textView11" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/zipField" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/zipCodeError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
 
         </LinearLayout>
     </ScrollView>
@@ -179,5 +216,14 @@
         android:layout_alignRight="@+id/scrollView"
         android:onClick="backButtonPressed"
         android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Create Account"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

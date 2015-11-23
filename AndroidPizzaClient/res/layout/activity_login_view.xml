@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Username"
-            android:id="@+id/textView2"
+            android:id="@+id/lastNameError"
             android:layout_gravity="bottom" />
 
         <EditText
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Password"
-            android:id="@+id/textView3" />
+            android:id="@+id/usernameError" />
 
         <EditText
             android:layout_width="match_parent"

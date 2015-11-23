@@ -10,14 +10,17 @@ package cs414.a5.nwalling.android.controllers;
  * @author Jacob
  */
 public interface ICreateAccountController extends IController {
-    boolean usernameExists(String name);
+	
+    boolean usernameExists();
     boolean createUser();
-    boolean validPassword();
-    void setUsername(String value);
-    void setPassword(String value);
-    void setFirstName(String value);
-    void setLastName(String value);
-    void setAddress1(String value);
-    void setAddress2(String value);
+    boolean validPassword(String value);
+    boolean setUsername(String value);
+    boolean setPassword(String value);
+    boolean setFirstName(String value);
+    boolean setLastName(String value);
+    boolean setAddress1(String value);
+    boolean setAddress2(String value);
+    boolean setEmailAddress(String value);
+    boolean setZip(String value);
     
 }

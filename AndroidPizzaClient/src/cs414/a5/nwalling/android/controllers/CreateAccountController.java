@@ -35,13 +35,8 @@ public class CreateAccountController extends AbstractController implements ICrea
     }
     
     @Override
-    public boolean usernameExists(String name) {
-        try {
-            source.validateUsername(name, this);
-        } catch (StorageException ex) {
-//            Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
+    public boolean usernameExists() {
+        return !nameFree;
     }
 
     @Override
@@ -74,38 +69,60 @@ public class CreateAccountController extends AbstractController implements ICrea
     }
     
     @Override
-    public boolean validPassword() {
-        return false;
+    public boolean validPassword(String value) {
+        return !(value.trim().equals(""));
+        
     }
     
     @Override
-    public void setUsername(String value) {
+    public boolean setUsername(String value) {
+    	if(value.trim().equals(""))
+    		return false;
+    	try {
+            source.validateUsername(value, this);
+        } catch (StorageException ex) {
+//            Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         model.setUsername(value);
+        return true;
     }
 
     @Override
-    public void setPassword(String value) {
+    public boolean setPassword(String value) {
+    	if(value.trim().equals(""))
+    		return false;
        model.setPassword(value);
+       return true;
     }
 
     @Override
-    public void setFirstName(String value) {
+    public boolean setFirstName(String value) {
+    	if(value.trim().equals(""))
+    		return false;
         model.setFirstName(value);
+        return true;
     }
 
     @Override
-    public void setLastName(String value) {
+    public boolean setLastName(String value) {
+    	if(value.trim().equals(""))
+    		return false;
         model.setLastName(value);
+        return true;
     }
 
     @Override
-    public void setAddress1(String value) {
+    public boolean setAddress1(String value) {
+    	if(value.trim().equals(""))
+    		return false;
         model.setAddress1(value);
+        return true;
     }
 
     @Override
-    public void setAddress2(String value) {
+    public boolean setAddress2(String value) {
         model.setAddress2(value);
+        return true;
     }
 
 	@Override
@@ -120,6 +137,30 @@ public class CreateAccountController extends AbstractController implements ICrea
 		nameFree = response.body() == null;
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	@Override
+	public boolean setEmailAddress(String value) {
+    	if(value.trim().equals(""))
+    		return false;
+		// TODO Auto-generated method stub
+		model.setEmailAddress(value);
+		return true;
+	}
+
+	@Override
+	public boolean setZip(String value) {
+		// TODO Auto-generated method stub
+		try
+		{
+		int tmp = Integer.parseInt(value);		
+		model.setZip(tmp);
+		}catch(Exception e)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 //    public void submit(int creatorAuth){
