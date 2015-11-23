@@ -27,24 +27,33 @@ public class MainView extends Activity implements Observer {
 	ArrayList<String> menu;
 	UserModel user;
 	
+	TextView username;
 	Button chefViewButton;
 	Button changeMenuButton;
-	TextView username;
+	Button loginButton;
+	Button createAccountButton;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_view);
 		IDataSource source;
 		username =(TextView)findViewById(R.id.username);
+		chefViewButton =(Button)findViewById(R.id.chefViewButton);
+		changeMenuButton =(Button)findViewById(R.id.updateMenuButton);
+		loginButton = (Button)findViewById(R.id.loginButton);
+		createAccountButton = (Button)findViewById(R.id.createAccountButton);
 		if(getIntent().hasExtra("user")){
 			user = (UserModel)getIntent().getSerializableExtra("user");
-			username.setText("Hello, "+user.getUsername()+"!");
 		}
 		else{
-			username.setText("Hello, Guest!");
+			UserModel guest = new UserModel();
+			guest.setUsername("Guest");
+			guest.setAuthLevel(5);
+			user = guest;
 		}
-		
-		
+		username.setText("Hello, "+user.getUsername()+"!");	
+		applyAuthorization(user);
 		source = new AndroidRESTClient();
 		
 		try {	source.load();
@@ -61,18 +70,31 @@ public class MainView extends Activity implements Observer {
 //			Bundle settings = getIntent().getBundleExtra("settings");
 //			source = settings.get
 //		}
-		controller = cf.getMenuController();
-			
+		controller = cf.getMenuController();		
 		((Observable)controller).addObserver(this);
-			
-		
-		
-
-		controller.fetchMenu();
-		
-			
+		controller.fetchMenu();		
 	}
 
+	public void applyAuthorization(UserModel user){
+			changeMenuButton.setEnabled(false);
+			chefViewButton.setEnabled(false);
+		switch(user.getAuthLevel()){
+		case 1:
+		case 2:
+			changeMenuButton.setVisibility(View.VISIBLE);
+			changeMenuButton.setClickable(true);
+			changeMenuButton.setEnabled(true);
+		case 3:
+			chefViewButton.setVisibility(View.VISIBLE);
+			chefViewButton.setClickable(true);
+			chefViewButton.setEnabled(true);
+		case 4:
+			loginButton.setText("Log Out");
+			createAccountButton.setText("Edit Account");
+		default:		
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -95,31 +117,45 @@ public class MainView extends Activity implements Observer {
 	public void chefViewButtonPressed(View view){
 		Intent i = new Intent(MainView.this, ChefView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	public void makeOrderButtonPressed(View view){
 		Intent i = new Intent(MainView.this, MakeOrderView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	public void loginButtonPressed(View view){
-		Intent i = new Intent(MainView.this, LoginView.class);
-		startActivity(i);
+		if(user.getUsername().equals("Guest")){	// if you're a guest, go to log in
+			Intent i = new Intent(MainView.this, LoginView.class);
+			startActivity(i);
+			finish();
+		}
+		else{	// if you're anybody else, log out (go back to main view without passing user with the intent)
+			Intent i = new Intent(MainView.this, MainView.class);
+			startActivity(i);
+			finish();
+		}
+		
 	}
 	
 	public void createAccountButtonPressed(View view){
 		Intent i = new Intent(MainView.this, CreateAccountView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	public void updateMenuButtonPressed(View view){
 		Intent i = new Intent(MainView.this, UpdateMenuView.class);
 		startActivity(i);
+		finish();
 	}
 	
 	public void viewMenuButtonPressed(View view){
 		Intent i = new Intent(MainView.this, MenuView.class);
 		startActivity(i);
+		finish();
 	}
 
 	@Override

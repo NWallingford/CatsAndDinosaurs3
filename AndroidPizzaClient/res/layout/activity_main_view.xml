@@ -31,8 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
-        android:elevation="-10dp"
-        android:onClick="createAccountButtonPressed" >
+        android:elevation="-10dp" >
 
         <Button
             android:id="@+id/makeOrderButton"
@@ -72,6 +71,7 @@
             android:layout_alignEnd="@+id/makeOrderButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:clickable="false"
             android:elevation="-10dp"
             android:onClick="chefViewButtonPressed"
             android:text="View Orders"
@@ -85,6 +85,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/createAccountButton"
             android:layout_alignTop="@+id/chefViewButton"
+            android:clickable="false"
             android:elevation="-10dp"
             android:onClick="updateMenuButtonPressed"
             android:text="Edit Menu"

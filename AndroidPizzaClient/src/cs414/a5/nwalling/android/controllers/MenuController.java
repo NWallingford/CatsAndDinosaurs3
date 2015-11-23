@@ -45,8 +45,6 @@ public class MenuController extends AbstractController implements IMenuControlle
 
 	@Override
 	public void onFailure(Throwable arg0) {
-		int x = 10;
-		x = 5;
 		
 	}
 

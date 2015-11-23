@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.android.controllers.ILoginController;
 import cs414.a5.nwalling.android.data.AndroidRESTClient;
@@ -21,14 +22,15 @@ import cs414.a5.nwalling.android.models.UserModel;
 public class LoginView extends Activity implements Observer {
 
 	private ILoginController controller;
+	EditText username, password;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_view);
-		
 		IDataSource source = new AndroidRESTClient();
-		
+		username =(EditText)findViewById(R.id.usernameQuery);
+		password =(EditText)findViewById(R.id.passwordAttempt);
 		try {	source.load();
 		} catch (LoadException e) {
 			// TODO Auto-generated catch block
@@ -62,25 +64,24 @@ public class LoginView extends Activity implements Observer {
 	
 	public void submitButtonPressed(View view){
 		//log in logic
-		controller.setUsername("Nick");
-		controller.setPassword("cats");
+		controller.setUsername(username.getText().toString());
+		controller.setPassword(password.getText().toString());
 		controller.login();
 		//end log in logic
-			
-		UserModel user = (UserModel) controller.getUser();		
-		Intent i = new Intent(LoginView.this, MainView.class);
-		i.putExtra("user",user);
-		startActivity(i);
 	}
 	
 	public void backButtonPressed(View view){
 		Intent i = new Intent(LoginView.this, MainView.class);
 		startActivity(i);
+		finish();
 	}
 
 	@Override
 	public void update(Observable observable, Object data) {
-		// TODO Auto-generated method stub
-		
+		UserModel user = (UserModel) controller.getUser();		
+		Intent i = new Intent(LoginView.this, MainView.class);
+		if(user != null) i.putExtra("user",user);
+		startActivity(i);
+		finish();
 	}
 }

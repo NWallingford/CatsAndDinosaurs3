@@ -21,7 +21,7 @@ public class AndroidRESTClient implements IDataSource{
 	@Override
 	public void load() {
 		Retrofit retrofit = new Retrofit.Builder()
-    			.baseUrl("http://salem.cs.colostate.edu:8080/PizzaWebService/webresources/PizzaService/")
+    			.baseUrl("http://10.0.0.2:8080/PizzaWebService/webresources/PizzaService/")
     			.addConverterFactory(GsonConverterFactory.create())
     			.build();
     	
