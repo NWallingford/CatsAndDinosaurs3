@@ -44,7 +44,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText3" />
+                    android:id="@+id/firstNameField" />
             </LinearLayout>
 
             <LinearLayout
@@ -62,7 +62,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText4" />
+                    android:id="@+id/lastNameField" />
 
             </LinearLayout>
 
@@ -81,7 +81,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText5" />
+                    android:id="@+id/usernameField" />
 
             </LinearLayout>
 
@@ -100,7 +100,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText6" />
+                    android:id="@+id/passwordField" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,7 +118,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText7" />
+                    android:id="@+id/emailField" />
             </LinearLayout>
 
             <LinearLayout
@@ -136,7 +136,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText8" />
+                    android:id="@+id/addressField" />
             </LinearLayout>
 
             <LinearLayout
@@ -154,7 +154,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText9" />
+                    android:id="@+id/zipField" />
             </LinearLayout>
 
         </LinearLayout>
@@ -177,7 +177,7 @@
         android:layout_alignBottom="@+id/submitButton"
         android:layout_alignParentEnd="true"
         android:layout_alignRight="@+id/scrollView"
-        android:onClick="backButtonClicked"
+        android:onClick="backButtonPressed"
         android:text="Cancel" />
 
 </RelativeLayout>

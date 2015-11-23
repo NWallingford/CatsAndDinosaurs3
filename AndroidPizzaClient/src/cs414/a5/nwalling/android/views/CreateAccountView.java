@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.android.controllers.ICreateAccountController;
 import cs414.a5.nwalling.android.data.AndroidRESTClient;
@@ -19,6 +20,8 @@ import cs414.a5.nwalling.android.exceptions.LoadException;
 
 public class CreateAccountView extends Activity implements Observer {
 
+	TextView firstNameField, lastNameField, usernameField, passwordField, emailField, addressField, zipField;
+	
 	private ICreateAccountController controller;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,13 @@ public class CreateAccountView extends Activity implements Observer {
 			e.printStackTrace();
 		}
 		
+		firstNameField =(TextView)findViewById(R.id.firstNameField);
+		lastNameField =(TextView)findViewById(R.id.lastNameField);
+		usernameField =(TextView)findViewById(R.id.usernameField);
+		passwordField =(TextView)findViewById(R.id.passwordField);
+		emailField =(TextView)findViewById(R.id.emailField);
+		addressField =(TextView)findViewById(R.id.addressField);
+		zipField =(TextView)findViewById(R.id.zipField);
 		ModelFactory mf = new ModelFactory(source);
 		ControllerFactory cf = new ControllerFactory(mf,source);
 		controller = cf.getCreateAccountController();
@@ -68,7 +78,7 @@ public class CreateAccountView extends Activity implements Observer {
 		Intent i = new Intent(CreateAccountView.this, MainView.class);
 		startActivity(i);
 	}
-
+	
 	@Override
 	public void update(Observable observable, Object data) {
 		// TODO Auto-generated method stub
