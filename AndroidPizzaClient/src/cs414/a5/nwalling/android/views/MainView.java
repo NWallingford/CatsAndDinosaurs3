@@ -116,12 +116,14 @@ public class MainView extends Activity implements Observer {
 	
 	public void chefViewButtonPressed(View view){
 		Intent i = new Intent(MainView.this, ChefView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
 		finish();
 	}
 	
 	public void makeOrderButtonPressed(View view){
 		Intent i = new Intent(MainView.this, MakeOrderView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
 		finish();
 	}
@@ -129,11 +131,13 @@ public class MainView extends Activity implements Observer {
 	public void loginButtonPressed(View view){
 		if(user.getUsername().equals("Guest")){	// if you're a guest, go to log in
 			Intent i = new Intent(MainView.this, LoginView.class);
+			if(user != null) i.putExtra("user",user);
 			startActivity(i);
 			finish();
 		}
 		else{	// if you're anybody else, log out (go back to main view without passing user with the intent)
 			Intent i = new Intent(MainView.this, MainView.class);
+			if(user != null) i.putExtra("user",user);
 			startActivity(i);
 			finish();
 		}
@@ -142,18 +146,21 @@ public class MainView extends Activity implements Observer {
 	
 	public void createAccountButtonPressed(View view){
 		Intent i = new Intent(MainView.this, CreateAccountView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
 		finish();
 	}
 	
 	public void updateMenuButtonPressed(View view){
 		Intent i = new Intent(MainView.this, UpdateMenuView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
 		finish();
 	}
 	
 	public void viewMenuButtonPressed(View view){
 		Intent i = new Intent(MainView.this, MenuView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
 		finish();
 	}

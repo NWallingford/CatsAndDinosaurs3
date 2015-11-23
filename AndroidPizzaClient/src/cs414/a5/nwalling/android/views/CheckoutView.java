@@ -17,15 +17,21 @@ import cs414.a5.nwalling.android.data.ControllerFactory;
 import cs414.a5.nwalling.android.data.IDataSource;
 import cs414.a5.nwalling.android.data.ModelFactory;
 import cs414.a5.nwalling.android.exceptions.LoadException;
+import cs414.a5.nwalling.android.models.UserModel;
 
 public class CheckoutView extends Activity implements Observer {
 
 	private IPaymentController controller;
+	private UserModel user;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_checkout_view);
 		IDataSource source = new AndroidRESTClient();
+		
+		if(getIntent().hasExtra("user")){
+			user = (UserModel)getIntent().getSerializableExtra("user");
+		}
 		
 		try {	source.load();
 		} catch (LoadException e) {
@@ -61,12 +67,16 @@ public class CheckoutView extends Activity implements Observer {
 	public void confirmButtonPressed(View view){
 		controller.submit();
 		Intent i = new Intent(CheckoutView.this, MainView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
+		finish();
 	}
 	
 	public void backButtonPressed(View view){
 		Intent i = new Intent(CheckoutView.this, MainView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
+		finish();
 	}
 
 	@Override

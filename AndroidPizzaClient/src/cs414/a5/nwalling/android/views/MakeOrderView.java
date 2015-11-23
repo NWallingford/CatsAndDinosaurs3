@@ -16,10 +16,12 @@ import cs414.a5.nwalling.android.data.ControllerFactory;
 import cs414.a5.nwalling.android.data.IDataSource;
 import cs414.a5.nwalling.android.data.ModelFactory;
 import cs414.a5.nwalling.android.exceptions.LoadException;
+import cs414.a5.nwalling.android.models.UserModel;
 
 public class MakeOrderView extends Activity implements Observer {
 
 	private IOrderController controller;
+	private UserModel user;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,10 @@ public class MakeOrderView extends Activity implements Observer {
 		setContentView(R.layout.activity_make_order_view);
 		
 		IDataSource source = new AndroidRESTClient();
+		
+		if(getIntent().hasExtra("user")){
+			user = (UserModel)getIntent().getSerializableExtra("user");
+		}
 		
 		try {	source.load();
 		} catch (LoadException e) {
@@ -62,12 +68,16 @@ public class MakeOrderView extends Activity implements Observer {
 	
 	public void checkoutButtonPressed(View view){
 		Intent i = new Intent(MakeOrderView.this, CheckoutView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
+		finish();
 	}
 	
 	public void backButtonPressed(View view){
 		Intent i = new Intent(MakeOrderView.this, MainView.class);
+		if(user != null) i.putExtra("user",user);
 		startActivity(i);
+		finish();
 	}
 
 	@Override

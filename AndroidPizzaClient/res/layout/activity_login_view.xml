@@ -65,6 +65,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordAttempt" />
+            android:id="@+id/address" />
     </LinearLayout>
 
     <Button

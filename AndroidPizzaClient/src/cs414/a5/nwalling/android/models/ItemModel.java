@@ -180,5 +180,11 @@ public class ItemModel extends AbstractModel implements IItemModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    @Override
+    public String toString()
+    {
+    	StringBuilder sb = new StringBuilder();
+    	sb.append(name).append(price).append(specialPrice).append(isSpecial);
+    	return sb.toString();
+    }
 }
