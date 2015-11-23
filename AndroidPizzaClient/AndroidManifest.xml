@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".views.MainView"
+            android:name="cs414.a5.nwalling.android.views.MainView"
             android:label="@string/title_activity_main_view" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,31 +24,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.ChefView"
+            android:name="cs414.a5.nwalling.android.views.ChefView"
             android:label="@string/title_activity_chef_view" >
         </activity>
         <activity
-            android:name=".views.LoginView"
+            android:name="cs414.a5.nwalling.android.views.LoginView"
             android:label="@string/title_activity_login_view" >
         </activity>
         <activity
-            android:name=".views.CreateAccountView"
+            android:name="cs414.a5.nwalling.android.views.CreateAccountView"
             android:label="@string/title_activity_create_account_view" >
         </activity>
         <activity
-            android:name=".views.UpdateMenuView"
+            android:name="cs414.a5.nwalling.android.views.UpdateMenuView"
             android:label="@string/title_activity_update_menu_view" >
         </activity>
         <activity
-            android:name=".views.MakeOrderView"
+            android:name="cs414.a5.nwalling.android.views.MakeOrderView"
             android:label="@string/title_activity_make_order_view" >
         </activity>
         <activity
-            android:name=".views.CheckoutView"
+            android:name="cs414.a5.nwalling.android.views.CheckoutView"
             android:label="@string/title_activity_checkout_view" >
         </activity>
         <activity
-            android:name=".views.MenuView"
+            android:name="cs414.a5.nwalling.android.views.MenuView"
             android:label="@string/title_activity_menu_view" >
         </activity>
     </application>
