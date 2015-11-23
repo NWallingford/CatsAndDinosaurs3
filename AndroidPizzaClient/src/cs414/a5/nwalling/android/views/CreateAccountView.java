@@ -42,8 +42,9 @@ public class CreateAccountView extends Activity implements Observer {
 		firstNameField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setFirstName(firstNameField.getText().toString()))
+				if(!hasFocus && !controller.setFirstName(firstNameField.getText().toString()))
 					firstNameError.setText("First Name Required.");
+				else firstNameError.setText("");
 			}
 		}
 		);
@@ -52,8 +53,9 @@ public class CreateAccountView extends Activity implements Observer {
 		lastNameField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setLastName(lastNameField.getText().toString()))
+				if(!hasFocus && !controller.setLastName(lastNameField.getText().toString()))
 					lastNameError.setText("Last Name Required.");
+				else lastNameError.setText("");
 			}
 		});
 		usernameError = (TextView)findViewById(R.id.usernameError);
@@ -61,8 +63,9 @@ public class CreateAccountView extends Activity implements Observer {
 		usernameField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setUsername(usernameField.getText().toString()))
+				if(!hasFocus && !controller.setUsername(usernameField.getText().toString()))
 					usernameError.setText("Username Required.");
+				else usernameError.setText("");
 			}
 		});
 		passwordError = (TextView)findViewById(R.id.passwordError);
@@ -70,8 +73,9 @@ public class CreateAccountView extends Activity implements Observer {
 		passwordField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setPassword(passwordField.getText().toString()))
+				if(!hasFocus && !hasFocus && !controller.setPassword(passwordField.getText().toString()))
 					passwordError.setText("Password Required.");
+				else passwordError.setText("");
 			}
 		});
 		emailError = (TextView)findViewById(R.id.emailError);
@@ -79,8 +83,9 @@ public class CreateAccountView extends Activity implements Observer {
 		emailField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setEmailAddress(emailField.getText().toString()))
+				if(!hasFocus && !controller.setEmailAddress(emailField.getText().toString()))
 					emailError.setText("Email Address Required.");
+				else emailError.setText("");
 			}
 		});
 		addressError = (TextView)findViewById(R.id.addressError);
@@ -88,8 +93,9 @@ public class CreateAccountView extends Activity implements Observer {
 		addressField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setAddress1(addressField.getText().toString()))
+				if(!hasFocus && !controller.setAddress1(addressField.getText().toString()))
 					addressError.setText("Address Required.");
+				else addressError.setText("");
 			}
 		});
 		zipError = (TextView)findViewById(R.id.zipCodeError);
@@ -97,8 +103,9 @@ public class CreateAccountView extends Activity implements Observer {
 		zipField.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!controller.setZip(zipField.getText().toString()))
+				if(!hasFocus && !controller.setZip(zipField.getText().toString()))
 					zipError.setText("Invalid Zip Code: Zip Required and must be an integer value.");
+				else zipError.setText("");
 			}
 		});
 		ModelFactory mf = new ModelFactory(source);
