@@ -57,6 +57,7 @@ public class MenuController extends AbstractController implements IMenuControlle
 		}
 		model = modelFactory.getEmptyIMenuModel();
 		model.setItems(tmp);
+		this.notifyObservers();
 	}
 
 }

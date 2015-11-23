@@ -1,6 +1,8 @@
 package cs414.a5.nwalling.views;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +18,7 @@ import cs414.a5.nwalling.data.IDataSource;
 import cs414.a5.nwalling.data.ModelFactory;
 import cs414.a5.nwalling.exceptions.LoadException;
 
-public class MainView extends Activity {
+public class MainView extends Activity implements Observer {
 	
 	IMenuController controller;
 	ArrayList<String> menu;
@@ -35,6 +37,10 @@ public class MainView extends Activity {
 		ModelFactory mf = new ModelFactory(source);
 		ControllerFactory cf = new ControllerFactory(mf,source);
 		controller = cf.getMenuController();
+		
+		((Observable)controller).addObserver(this);
+		
+		
 		controller.fetchMenu();
 		menu = controller.getMenu();
 		TextView textField = new TextView(this);
@@ -94,5 +100,11 @@ public class MainView extends Activity {
 	public void viewMenuButtonPressed(View view){
 		Intent i = new Intent(MainView.this, MenuView.class);
 		startActivity(i);
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		// TODO Auto-generated method stub
+		//Refresh your view here!
 	}
 }

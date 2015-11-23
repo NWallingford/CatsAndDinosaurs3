@@ -9,11 +9,12 @@ import cs414.a5.nwalling.data.IDataSource;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.Observable;
 /**
  *
  * @author Jacob
  */
-public abstract class AbstractController implements IController, Serializable
+public abstract class AbstractController extends Observable implements IController, Serializable
 {
     protected PropertyChangeSupport propertySupport;
 
