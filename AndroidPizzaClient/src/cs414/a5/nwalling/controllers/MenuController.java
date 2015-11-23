@@ -36,7 +36,9 @@ public class MenuController extends AbstractController implements IMenuControlle
 	public ArrayList<String> getMenu() {
 		ArrayList<String> temp = new ArrayList<String>();
 		for(IItemModel m:model.getItems()){
-			temp.add(m.getName());
+			String str = m.getName()+":  $"+m.getPrice();
+			if(m.getIsSpecial()) str = str + "   ***Special Price!***";
+			temp.add(str);
 		}
 		return temp;
 	}
@@ -57,6 +59,7 @@ public class MenuController extends AbstractController implements IMenuControlle
 		}
 		model = modelFactory.getEmptyIMenuModel();
 		model.setItems(tmp);
+		this.setChanged();
 		this.notifyObservers();
 	}
 
