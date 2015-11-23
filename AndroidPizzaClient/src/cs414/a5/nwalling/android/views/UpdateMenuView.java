@@ -1,5 +1,6 @@
 package cs414.a5.nwalling.android.views;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,6 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import cs414.a5.nwalling.R;
 import cs414.a5.nwalling.android.controllers.IChangeMenuController;
 import cs414.a5.nwalling.android.data.AndroidRESTClient;
@@ -16,11 +22,14 @@ import cs414.a5.nwalling.android.data.ControllerFactory;
 import cs414.a5.nwalling.android.data.IDataSource;
 import cs414.a5.nwalling.android.data.ModelFactory;
 import cs414.a5.nwalling.android.exceptions.LoadException;
+import cs414.a5.nwalling.android.models.IItemModel;
 
 public class UpdateMenuView extends Activity implements Observer {
 
 	IChangeMenuController controller;
-	
+	ListView menu;
+//	EditText name, price;
+	int selectedItemIndex;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +46,13 @@ public class UpdateMenuView extends Activity implements Observer {
 		ControllerFactory cf = new ControllerFactory(mf,source);
 		controller = cf.getChangeMenuController();
 		((Observable)controller).addObserver(this);
+		controller.fetchCurrentMenu();
+		menu = (ListView)findViewById(R.id.incompleteList);
+		menu.setOnItemClickListener(new OnItemClickListener() {
+		      public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
+		    	  selectedItemIndex = myItemInt;
+		        }
+		      });
 	}
 
 	@Override
@@ -62,10 +78,29 @@ public class UpdateMenuView extends Activity implements Observer {
 		Intent i = new Intent(UpdateMenuView.this, MainView.class);
 		startActivity(i);
 	}
-
+	
+	public void addNewMenuItemButtonPressed(View view){
+		//Open dialog
+	}
+	public void removeSelectedItemButtonPressed(View view){
+		Object toRemove = ((ArrayAdapter)menu.getAdapter()).getItem(selectedItemIndex);
+		((ArrayAdapter)menu.getAdapter()).remove(toRemove);
+	}
+	public void editSelectedItemButtonPressed(View view){
+		
+	}
+	public void saveButtonPressed(View view){
+		controller.save();
+		Intent i = new Intent(UpdateMenuView.this, MainView.class);
+		startActivity(i);
+		finish();
+	}
 	@Override
 	public void update(Observable observable, Object data) {
 		// TODO Auto-generated method stub
 		
+		ArrayList<IItemModel> items = controller.getMenu();
+		ArrayAdapter<IItemModel> adapter = new ArrayAdapter<IItemModel>(this, selectedItemIndex, items);
+		menu.setAdapter(adapter);
 	}
 }

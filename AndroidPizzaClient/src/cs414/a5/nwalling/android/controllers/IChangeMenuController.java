@@ -5,12 +5,17 @@
  */
 package cs414.a5.nwalling.android.controllers;
 
+import java.util.ArrayList;
+
+import cs414.a5.nwalling.android.models.IItemModel;
+
 /**
  *
  * @author Jacob
  */
 public interface IChangeMenuController extends IController {
-    void getCurrentMenu();
+	ArrayList<IItemModel> getMenu();
+    void fetchCurrentMenu();
     void removeItems(int[] indices);
     void newItem(String name, double price);
     void revokeSpecial(int[] indices);

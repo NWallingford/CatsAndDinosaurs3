@@ -74,9 +74,14 @@ public class ChangeMenuController extends AbstractController implements IChangeM
 				e.printStackTrace();
 			}
     }
-
+@Override
+	public ArrayList<IItemModel> getMenu()
+	{
+		return model.getItems();
+	}
+    
     @Override
-    public void getCurrentMenu() {
+    public void fetchCurrentMenu() {
         try {
 			source.getMenu(this);
 		} catch (StorageException e) {
